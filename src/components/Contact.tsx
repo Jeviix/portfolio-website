@@ -20,6 +20,14 @@ export const Contact = () => {
 
   const sendEmailNotification = async (messageData: ContactMessage) => {
     try {
+      const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      const contactEmail = import.meta.env.VITE_CONTACT_EMAIL;
+
+      if (!web3formsKey) {
+        console.error('Web3Forms access key not configured');
+        return;
+      }
+
       // Using Web3Forms (free, no signup required)
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -27,13 +35,14 @@ export const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'f833101a-65a1-4a07-8787-9dd86ca2d9a4',
+          access_key: web3formsKey,
           name: messageData.name,
           email: messageData.email,
           subject: `New Contact Form Message from ${messageData.name}`,
           message: `Name: ${messageData.name}\nEmail: ${messageData.email}\nMessage: ${messageData.message}`,
           from_name: 'Portfolio Contact Form',
           replyto: messageData.email,
+          to: contactEmail || 'alieddardoury@gmail.com',
         }),
       });
 
