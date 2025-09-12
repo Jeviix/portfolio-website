@@ -1,73 +1,144 @@
-# Welcome to your Lovable project
+﻿# Portfolio Website
 
-## Project info
+A modern, responsive portfolio website built with React, TypeScript, and Vite. Features a functional contact form with Supabase database integration and email notifications.
 
-**URL**: https://lovable.dev/projects/5cb892fe-9747-4c7d-a417-4fde3f23315d
+##  Features
 
-## How can I edit this code?
+- **Modern Design**: Clean, professional UI with dark/light theme support
+- **Responsive**: Mobile-first design that works on all devices
+- **Multi-language**: Support for multiple languages
+- **Contact Form**: Functional contact form with database storage
+- **Email Notifications**: Automatic email alerts for new messages
+- **Supabase Integration**: Secure database storage for contact messages
+- **TypeScript**: Full type safety and better development experience
+- **shadcn/ui**: Beautiful, accessible UI components
 
-There are several ways of editing your application.
+##  Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Database**: Supabase (PostgreSQL)
+- **Email**: Web3Forms
+- **Icons**: Lucide React
+- **Deployment**: Ready for Vercel, Netlify, or any static hosting
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5cb892fe-9747-4c7d-a417-4fde3f23315d) and start prompting.
+##  Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Jeviix/portfolio-website.git
+   cd portfolio-website
+   ```
 
-**Use your preferred IDE**
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Fill in your actual values in `.env`:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key
+   VITE_CONTACT_EMAIL=your_email@example.com
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+4. **Set up Supabase database**
+   - Create a Supabase project
+   - Run the SQL from `supabase-schema.sql` in your Supabase SQL editor
+   - Disable RLS for the contact_messages table (see `disable-rls-completely.sql`)
 
-Follow these steps:
+5. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+##  Database Setup
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Create Supabase project** at [supabase.com](https://supabase.com)
+2. **Run the database schema**:
+   ```sql
+   -- Copy and paste the contents of supabase-schema.sql
+   ```
+3. **Disable RLS** for contact form to work:
+   ```sql
+   ALTER TABLE contact_messages DISABLE ROW LEVEL SECURITY;
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+##  Email Setup
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. **Get Web3Forms access key** at [web3forms.com](https://web3forms.com)
+2. **Add your email** to get the access key
+3. **Update environment variables** with your key
+
+##  Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on every push
+
+### Netlify
+1. Connect your GitHub repository to Netlify
+2. Add environment variables in Netlify dashboard
+3. Deploy automatically on every push
+
+### Manual Deployment
+```bash
+npm run build
+# Upload the dist folder to your hosting provider
 ```
 
-**Edit a file directly in GitHub**
+##  Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_SUPABASE_URL` | Your Supabase project URL | Yes |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anon key | Yes |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Web3Forms access key for emails | Yes |
+| `VITE_CONTACT_EMAIL` | Your email address | Yes |
 
-**Use GitHub Codespaces**
+##  Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+ components/          # React components
+    ui/             # shadcn/ui components
+    Contact.tsx     # Contact form component
+ lib/                # Utility functions
+    supabase.ts     # Supabase client
+ context/            # React context
+ hooks/              # Custom hooks
+ i18n/               # Internationalization
+ pages/              # Page components
+```
 
-## What technologies are used for this project?
+##  Customization
 
-This project is built with:
+- **Colors**: Update `tailwind.config.ts` for custom color scheme
+- **Content**: Edit `src/i18n/translations.ts` for text content
+- **Images**: Replace images in `src/assets/`
+- **Styling**: Modify components in `src/components/`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+##  License
 
-## How can I deploy this project?
+This project is open source and available under the [MIT License](LICENSE).
 
-Simply open [Lovable](https://lovable.dev/projects/5cb892fe-9747-4c7d-a417-4fde3f23315d) and click on Share -> Publish.
+##  Contributing
 
-## Can I connect a custom domain to my Lovable project?
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Jeviix/portfolio-website/issues).
 
-Yes, you can!
+##  Contact
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Email**: alieddardoury@gmail.com
+- **GitHub**: [@Jeviix](https://github.com/Jeviix)
+- **Portfolio**: [Your Portfolio URL]
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+ Star this repository if you found it helpful!
